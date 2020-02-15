@@ -89,9 +89,8 @@
               </td>
               <td><input type='text' name='biaya[]' readonly class="form-control" value='<?php $biaya = explode('.',$lab['biaya']); echo $biaya[$a]; ?>'>
               </td>
-              <!-- <td><input type="button" class='btn btn-primary'  value="&times"> -->
-              </td>
-              
+              <!-- <td><input type='button' class='btn btn-primary' id='delete"+i+"' value='&times'>
+              </td> -->
             </tr>
 
           <?php } ?>
@@ -147,12 +146,15 @@
               var b = table3.rows('.selected').data()[i][3];
 
               $("#table4 tbody").append("<tr><td><input name='jenis_pemeriksaan[]' readonly class='form-control' value='"+p+"'></td> <td><input type='text' name='hasil[]' class='form-control' value=''></td><td><input type='text' name='satuan[]' class='form-control' value=''></td><td><input type='text' name='nilai_rujukan[]' class='form-control' value=''></td><td><input type='text' name='keterangan[]' class='form-control' value=''></td><td><input type='text' name='biaya[]' value='"+b+"' readonly class='form-control' placeholder=''></td><td><input type='button' class='btn btn-primary' id='delete"+i+"' value='&times'></td></tr>");
-            $('#delete'+i).on('click', function () {
-              $(this).parents('tr').fadeOut();
-            } );
             }
-
           });
+
+              for (var i = 0; i < table3.rows('.selected').data().length; i++) { 
+                $('#delete'+i).on('click', function () {
+                      $(this).parents('tr').fadeOut();
+                });
+              }
+
         })
 
       </script>

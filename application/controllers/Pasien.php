@@ -1,4 +1,6 @@
 <?php 
+require APPPATH . 'libraries/REST_Controller.php';
+
 class Pasien extends CI_Controller
 {
   public function __construct()
@@ -135,6 +137,26 @@ public function edit_data() {
         $this->datatables->from('pasien');
         return print_r($this->datatables->generate());
       }
+
+    public function api()
+    {
+     
+        $data = $this->db->get('pasien');
+        $this->response($data, REST_Controller::HTTP_OK);
+    }
+
+      // public function json()
+      // {
+      //   $this->load->library('datatables');
+      //   $this->datatables->select('id_pasien,no_rawat,no_rkm_medis,nm_pasien,jenis_kelamin,alamat,penaggung_jwb,hbng_pj,jenis_bayar,kamar,trf_kmr,diagnosa_awal');
+      //   $this->datatables->add_column('edit', anchor('Pasien/form_edit/$1','Edit',array('class'=>'btn btn-primary')), 'id_pasien');
+      //   $this->datatables->add_column('hapus', anchor('Pasien/hapus_data/$1','Hapus',array('class'=>'btn btn-danger')), 'id_pasien');
+      //   $this->datatables->add_column('cetak', anchor('Pasien/index/$1', 'Action', array('class'=>'btn btn-primary','data-toggle'=>'modal','data-target'=>'#modalcetak'.'$1')), 'id_pasien');
+      //   $this->datatables->from('pasien');
+      //   return print_r($this->datatables->generate());
+      // }
+
+
 
       public function export(){
     // Skrip berikut ini adalah skrip yang bertugas untuk meng-export data ke excel

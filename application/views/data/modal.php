@@ -62,7 +62,7 @@
           <tbody>
           </tbody>
           <tfoot>
-            <tr>
+            <!-- <tr>
               <th>ID Petugas</th>
               <th>NIP</th>
               <th>Nama Petugas</th>
@@ -71,7 +71,7 @@
               <th>Tanggal Lahir</th>
               <th>Gol Darah</th>
               <th>Agama</th>
-            </tr>
+            </tr> -->
           </tfoot>
         </table>
       </div>
@@ -160,14 +160,16 @@
         <tbody>
         </tbody>
         <tfoot>
-          <th>ID Dokter</th>
-          <th>Kode Dokter</th>
-          <th>Nama Dokter</th>
-          <th>Jenis Kelamin</th>
-          <th>Tempat Lahir</th>
-          <th>Tanggal Lahir</th>
-          <th>Golongan Darah</th>
-          <th>Agama</th>
+          <!-- <tr>
+            <th>ID Dokter</th>
+            <th>Kode Dokter</th>
+            <th>Nama Dokter</th>
+            <th>Jenis Kelamin</th>
+            <th>Tempat Lahir</th>
+            <th>Tanggal Lahir</th>
+            <th>Golongan Darah</th>
+            <th>Agama</th>
+          </tr> -->
         </tfoot>
       </table>
     </div>

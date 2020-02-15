@@ -117,19 +117,22 @@
             order: [[ 1, 'asc' ]],
           });
 
+
           $('#btncheck').click( function () {
             for (var i = 0; i < table3.rows('.selected').data().length; i++) { 
 
               var p = table3.rows('.selected').data()[i][2];
               var b = table3.rows('.selected').data()[i][3];
 
-              $("#table4 tbody").append("<tr><td><input name='jenis_pemeriksaan[]' readonly class='form-control' value='"+p+"'></td> <td><input type='text' name='hasil[]' class='form-control' value=''></td><td><input type='text' name='satuan[]' class='form-control' value=''></td><td><input type='text' name='nilai_rujukan[]' class='form-control' value=''></td><td><input type='text' name='keterangan[]' class='form-control' value=''></td><td><input type='text' name='biaya[]' value='"+b+"' readonly class='form-control' placeholder=''></td><td><input type='button' class='btn btn-primary' id='delete' value='&times'></td></tr>");
+              $("#table4 tbody").append("<tr><td><input name='jenis_pemeriksaan[]' readonly class='form-control' value='"+p+"'></td> <td><input type='text' name='hasil[]' class='form-control' value=''></td><td><input type='text' name='satuan[]' class='form-control' value=''></td><td><input type='text' name='nilai_rujukan[]' class='form-control' value=''></td><td><input type='text' name='keterangan[]' class='form-control' value=''></td><td><input type='text' name='biaya[]' value='"+b+"' readonly class='form-control' placeholder=''></td><td><input type='button' class='btn btn-primary' id='delete"+i+"' value='&times'></td></tr>");
+              
+                $("#delete"+i+"").on('click', function () {
+                  $(this).parents('tr').remove();
+                });
+              
             }
+          });
 
-          } );
-            $("#delete").on('click', function () {
-              $(this).parents('tr').remove();
-            });
           
 
         });

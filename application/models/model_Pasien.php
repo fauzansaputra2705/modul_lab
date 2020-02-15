@@ -6,6 +6,13 @@ class Model_Pasien extends CI_Model {
 	{
 		return $this->db->get('pasien');
 	}
+
+	public function tes()
+	{
+		return $this->db->get('pasien');
+	}
+
+
 	public function all_lab()
 	{
 		return $this->db->get('cetak_lab');
