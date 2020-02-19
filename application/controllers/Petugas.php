@@ -5,7 +5,7 @@ class Petugas extends CI_Controller {
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model('model_Petugas');
+        $this->load->model('Model_Petugas');
     }
 
     public function renderLayout($data)
@@ -19,14 +19,14 @@ class Petugas extends CI_Controller {
   {
    $data ['title'] = "List Petugas";
    $data ['page'] = "Petugas";
-   $data ['list'] = $this->model_Petugas->getAll();
+   $data ['list'] = $this->Model_Petugas->getAll();
 
    $this->renderLayout($data);
 }
 
 public function hapus_data($id)
 {
-   $cekhapus = $this->model_Petugas->hapus($id);
+   $cekhapus = $this->Model_Petugas->hapus($id);
    if ($cekhapus == TRUE) {
       redirect('Petugas/index','refresh');
   }else{
@@ -45,7 +45,7 @@ public function form_edit($id)
 {
    $data['title'] = "Form Edit Data";
    $data['page'] = "FormEditPetugas";
-   $data['petugas'] = $this->model_Petugas->get_petugas($id);
+   $data['petugas'] = $this->Model_Petugas->get_petugas($id);
 
    $this->renderLayout($data);
 }
@@ -63,7 +63,7 @@ public function tambah_data()
 
    $datasimpan = array('id_petugas'=>$id, 'nip'=>$nip, 'nama'=>$nm, 'jk'=>$jk, 'tmp_lahir'=>$tmpt_lhr, 'tgl_lahir'=>$tgl_lhr, 'gol_drh'=>$goldar, 'agama'=>$agm);
 
-   $ceksimpan = $this->model_Petugas->insert($datasimpan);
+   $ceksimpan = $this->Model_Petugas->insert($datasimpan);
    if ($ceksimpan == TRUE) {
       redirect('Petugas/index','refresh');
   }else {
@@ -84,7 +84,7 @@ public function edit_data() {
 
     $dataupdate = array('id_petugas'=>$id, 'nip'=>$nip, 'nama'=>$nm, 'jk'=>$jk, 'tmp_lahir'=>$tmpt_lhr, 'tgl_lahir'=>$tgl_lhr, 'gol_drh'=>$goldar, 'agama'=>$agm);
 
-    $cekupdate = $this->model_Petugas->edit($dataupdate);
+    $cekupdate = $this->Model_Petugas->edit($dataupdate);
     if ($cekupdate == TRUE) {
       redirect('Petugas/index','refresh');
   }else {
@@ -125,7 +125,7 @@ public function export(){
     header("Content-type: application/vnd-ms-excel");
     header("Content-Disposition: attachment; filename=Modul_Lab_Petugas.xls");
     
-    $data['list'] = $this->model_Petugas->getAll();
+    $data['list'] = $this->Model_Petugas->getAll();
     $this->load->view('data/export/exportpetugas', $data);
 }
 }

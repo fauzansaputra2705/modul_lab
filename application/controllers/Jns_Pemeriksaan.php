@@ -5,7 +5,7 @@ class Jns_Pemeriksaan extends Ci_Controller {
 	{
 		parent::__construct();
 		$this->load->database();
-		$this->load->model('model_Jnspemeriksaan');
+		$this->load->model('Model_Jnspemeriksaan');
 	}
 
 	public function renderLayout($data)
@@ -18,14 +18,14 @@ class Jns_Pemeriksaan extends Ci_Controller {
    {
        $data ['title'] = "Jenis Pemeriksaan";
        $data ['page'] = "Pemeriksaan";
-       $data ['list'] = $this->model_Jnspemeriksaan->getAll();
+       $data ['list'] = $this->Model_Jnspemeriksaan->getAll();
 
        $this->renderLayout($data);
    }
 
    public function hapus_data($id)
    {
-       $cekhapus = $this->model_Jnspemeriksaan->hapus($id);
+       $cekhapus = $this->Model_Jnspemeriksaan->hapus($id);
        if ($cekhapus == TRUE) {
           redirect('Jns_Pemeriksaan/index','refresh');
       }else{
@@ -45,7 +45,7 @@ class Jns_Pemeriksaan extends Ci_Controller {
 // {
 //    $data['title'] = "Form Edit Pemeriksaan";
 //    $data['page'] = "FormEditPemeriksaan";
-//    $data['pemeriksaan'] = $this->model_Jnspemeriksaan->get_pemeriksaan($id);
+//    $data['pemeriksaan'] = $this->Model_Jnspemeriksaan->get_pemeriksaan($id);
 
 //    $this->renderLayout($data);
 // }
@@ -59,7 +59,7 @@ public function tambah_data()
 
    $datasimpan = array('id_jenis_perawat'=>$id, 'kode_periksa'=>$kode, 'nama_pemeriksaan'=>$nama_periksa, 'tarif'=>$tarif);
 
-   $ceksimpan = $this->model_Jnspemeriksaan->insert($datasimpan);
+   $ceksimpan = $this->Model_Jnspemeriksaan->insert($datasimpan);
    if ($ceksimpan == TRUE) {
       redirect('Jns_Pemeriksaan/index','refresh');
   }else {
@@ -76,7 +76,7 @@ public function tambah_data()
 
     // 	$dataupdate = array('id_jenis_perawat'=>$id, 'kode_periksa'=>$kode, 'nama_pemeriksaan'=>$nama_periksa, 'tarif'=>$tarif);
 
-    // 	$cekupdate = $this->model_Jnspemeriksaan->edit($dataupdate);
+    // 	$cekupdate = $this->Model_Jnspemeriksaan->edit($dataupdate);
     // 	if ($cekupdate == TRUE) {
     // 		redirect('Jns_Pemeriksaan/index','refresh');
     // 	}else {
@@ -113,7 +113,7 @@ public function export(){
     header("Content-type: application/vnd-ms-excel");
     header("Content-Disposition: attachment; filename=Modul_Lab_Pemeriksaan.xls");
     
-    $data['list'] = $this->model_Jnspemeriksaan->getAll();
+    $data['list'] = $this->Model_Jnspemeriksaan->getAll();
     $this->load->view('data/export/exportpemeriksaan', $data);
 }
 

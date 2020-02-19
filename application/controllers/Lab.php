@@ -6,7 +6,7 @@ class Lab extends CI_Controller {
   {
     parent::__construct();
     $this->load->database();
-    $this->load->model('model_Lab');
+    $this->load->model('Model_Lab');
   }
 
   public function renderLayout($data)
@@ -20,10 +20,10 @@ class Lab extends CI_Controller {
   {
     $data['page'] = "Lab";
     $data['title'] = "Tambah Laboratorium";
-    $data['list_pasien'] = $this->model_Lab->allpasien();
-    $data['list_lab'] = $this->model_Lab->all_lab();
-    $data['pemeriksaan'] = $this->model_Lab->allpemeriksaan();
-    $data['pasien'] = $this->model_Lab->get_pasien($id);
+    $data['list_pasien'] = $this->Model_Lab->allpasien();
+    $data['list_lab'] = $this->Model_Lab->all_lab();
+    $data['pemeriksaan'] = $this->Model_Lab->allpemeriksaan();
+    $data['pasien'] = $this->Model_Lab->get_pasien($id);
 
     $this->renderLayout($data);
     $this->load->view('data/modal');
@@ -32,7 +32,7 @@ class Lab extends CI_Controller {
   public function cetak($id)
   {
     /*ob_start();
-    $data['lab'] = $this->model_Lab->get_lab($id);
+    $data['lab'] = $this->Model_Lab->get_lab($id);
     $this->load->view('data/lab/cetaklab',$data);
     $html = ob_get_contents();
     ob_end_clean();
@@ -44,7 +44,7 @@ class Lab extends CI_Controller {
     $this->load->library('pdf');
     $this->pdf->setPaper('A4', 'potrait');
     $this->pdf->filename = "Hasil_Laboratorium.pdf";
-    $data['lab'] = $this->model_Lab->get_lab($id);
+    $data['lab'] = $this->Model_Lab->get_lab($id);
     $this->pdf->load_view('data/lab/cetaklab',$data);
 
 
@@ -59,7 +59,7 @@ class Lab extends CI_Controller {
   {
     $data['page'] = "EditLab";
     $data['title'] = "Edit Laboratorium";
-    $data['lab'] = $this->model_Lab->get_lab($id);
+    $data['lab'] = $this->Model_Lab->get_lab($id);
 
     $this->renderLayout($data);
 
@@ -90,7 +90,7 @@ class Lab extends CI_Controller {
 
     $simpanlab = array('id_cetak_lab'=>$id, 'no_rkm_medis'=>$no_rekam_medis, 'nm_pasien'=>$nama_pasien, 'jk_umur'=>$jkumur, 'alamat'=>$alamat, 'no_periksa'=>$no_periksa, 'penggung_jwb'=>$penanggung_jawab, 'dokter_pengirim'=>$dokter_pengirim, 'tgl_pemeriksaan'=>$tanggal_pemeriksaan, 'jam_pemeriksaan'=>$jam_pemeriksaan, 'poli'=>$poli,'jenis_pemeriksaan'=>$jenis_pemeriksaan, 'hasil'=>$hasil, 'satuan'=>$satuan, 'nilai_rujukan'=>$nilai_rujukan, 'keterangan'=>$keterangan, 'catatan'=>$catatan, 'tanggal_cetak'=>$tanggal_cetak, 'petugas_lab'=>$petugas_lab, 'biaya'=>$biaya);
 
-    $ceksimpan = $this->model_Lab->insert($simpanlab);
+    $ceksimpan = $this->Model_Lab->insert($simpanlab);
     if (ceksimpan==true) {
       redirect('Pasien');
     }else{
@@ -123,7 +123,7 @@ class Lab extends CI_Controller {
 
     $simpanlab = array('no_rkm_medis'=>$no_rekam_medis, 'nm_pasien'=>$nama_pasien, 'jk_umur'=>$jkumur, 'alamat'=>$alamat, 'no_periksa'=>$no_periksa, 'penggung_jwb'=>$penanggung_jawab, 'dokter_pengirim'=>$dokter_pengirim, 'tgl_pemeriksaan'=>$tanggal_pemeriksaan, 'jam_pemeriksaan'=>$jam_pemeriksaan, 'poli'=>$poli,'jenis_pemeriksaan'=>$jenis_pemeriksaan, 'hasil'=>$hasil, 'satuan'=>$satuan, 'nilai_rujukan'=>$nilai_rujukan, 'keterangan'=>$keterangan, 'catatan'=>$catatan, 'tanggal_cetak'=>$tanggal_cetak, 'petugas_lab'=>$petugas_lab, 'biaya'=>$biaya);
 
-    $ceksimpan = $this->model_Lab->update($simpanlab);
+    $ceksimpan = $this->Model_Lab->update($simpanlab);
     if (ceksimpan==true) {
       redirect('Pasien');
     }else{
@@ -133,7 +133,7 @@ class Lab extends CI_Controller {
 
   function get_data_petugas()
   {
-    $list = $this->model_Lab->get_datatables();
+    $list = $this->Model_Lab->get_datatables();
     $data = array();
     $no = $_POST['start'];
     foreach ($list as $field) {
@@ -153,8 +153,8 @@ class Lab extends CI_Controller {
 
     $output = array(
       "draw" => $_POST['draw'],
-      "recordsTotal" => $this->model_Lab->count_all(),
-      "recordsFiltered" => $this->model_Lab->count_filtered(),
+      "recordsTotal" => $this->Model_Lab->count_all(),
+      "recordsFiltered" => $this->Model_Lab->count_filtered(),
       "data" => $data,
     );
         //output dalam format JSON
@@ -163,7 +163,7 @@ class Lab extends CI_Controller {
 
   function get_data_dokter()
   {
-    $list = $this->model_Lab->get_datatables1();
+    $list = $this->Model_Lab->get_datatables1();
     $data = array();
     $no = $_POST['start'];
     foreach ($list as $field) {
@@ -183,8 +183,8 @@ class Lab extends CI_Controller {
 
     $output = array(
       "draw" => $_POST['draw'],
-      "recordsTotal" => $this->model_Lab->count_all1(),
-      "recordsFiltered" => $this->model_Lab->count_filtered1(),
+      "recordsTotal" => $this->Model_Lab->count_all1(),
+      "recordsFiltered" => $this->Model_Lab->count_filtered1(),
       "data" => $data,
     );
         //output dalam format JSON
@@ -194,7 +194,7 @@ class Lab extends CI_Controller {
 
   function get_data_pemeriksaan()
   {
-    $list = $this->model_Lab->get_datatables2();
+    $list = $this->Model_Lab->get_datatables2();
     $data = array();
     $no = $_POST['start'];
     foreach ($list as $field) {
@@ -210,8 +210,8 @@ class Lab extends CI_Controller {
 
     $output = array(
       "draw" => $_POST['draw'],
-      "recordsTotal" => $this->model_Lab->count_all2(),
-      "recordsFiltered" => $this->model_Lab->count_filtered2(),
+      "recordsTotal" => $this->Model_Lab->count_all2(),
+      "recordsFiltered" => $this->Model_Lab->count_filtered2(),
       "data" => $data,
     );
         //output dalam format JSON

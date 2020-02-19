@@ -7,7 +7,7 @@ class Pasien extends CI_Controller
   {
     parent::__construct();
     $this->load->database();
-    $this->load->model('model_Pasien');
+    $this->load->model('Model_Pasien');
   }
 
   public function renderLayout($data)
@@ -21,8 +21,8 @@ class Pasien extends CI_Controller
   {
    $data ['title'] = "List Pasien";
    $data ['page'] = "Pasien";
-   $data ['list_pasien'] = $this->model_Pasien->getAll();
-   $data ['list_lab'] = $this->model_Pasien->all_lab();
+   $data ['list_pasien'] = $this->Model_Pasien->getAll();
+   $data ['list_lab'] = $this->Model_Pasien->all_lab();
 
    $this->renderLayout($data);
    $this->load->view('data/modal');
@@ -30,7 +30,7 @@ class Pasien extends CI_Controller
 
  public function hapus_data($id)
  {
-   $cekhapus = $this->model_Pasien->hapus($id);
+   $cekhapus = $this->Model_Pasien->hapus($id);
    if ($cekhapus == TRUE) {
     redirect('Pasien/index','refresh');
   }else{
@@ -50,7 +50,7 @@ public function form_edit($id)
 {
  $data['title'] = "Form Edit Data";
  $data['page'] = "FormEditPasien";
- $data['pasien'] = $this->model_Pasien->get_pasien($id);
+ $data['pasien'] = $this->Model_Pasien->get_pasien($id);
 
  $this->renderLayout($data);
 }
@@ -72,7 +72,7 @@ public function tambah_data()
 
  $datasimpan = array('id_pasien'=>$id, 'no_rawat'=>$no_rwt, 'no_rkm_medis'=>$no_rkm_mds, 'nm_pasien'=>$nm_psn, 'jenis_kelamin'=>$jenis_kelamin, 'alamat'=>$almt, 'penaggung_jwb'=>$penanggung_jwb, 'hbng_pj'=>$hbng_pj, 'jenis_bayar'=>$jns_byr, 'kamar'=>$kmr, 'trf_kmr'=>$trf_kmr, 'diagnosa_awal'=>$diagniosa_awl);
 
- $ceksimpan = $this->model_Pasien->insert($datasimpan);
+ $ceksimpan = $this->Model_Pasien->insert($datasimpan);
  if ($ceksimpan == TRUE) {
   redirect('Pasien/index','refresh');
 }else {
@@ -97,7 +97,7 @@ public function edit_data() {
 
   $dataupdate = array('no_rawat'=>$no_rwt, 'no_rkm_medis'=>$no_rkm_mds, 'nm_pasien'=>$nm_psn, 'jenis_kelamin'=>$jenis_kelamin, 'alamat'=>$almt, 'penaggung_jwb'=>$penanggung_jwb, 'hbng_pj'=>$hbng_pj, 'jenis_bayar'=>$jns_byr, 'kamar'=>$kmr, 'trf_kmr'=>$trf_kmr, 'diagnosa_awal'=>$diagniosa_awl);
 
-  $cekupdate = $this->model_Pasien->edit($dataupdate);
+  $cekupdate = $this->Model_Pasien->edit($dataupdate);
   if ($cekupdate == TRUE) {
     redirect('Pasien/index','refresh');
   }else {
@@ -163,7 +163,7 @@ public function edit_data() {
         header("Content-type: application/vnd-ms-excel");
         header("Content-Disposition: attachment; filename=Modul_Lab_Pasien.xls");
         
-        $data['list'] = $this->model_Pasien->getAll();
+        $data['list'] = $this->Model_Pasien->getAll();
         $this->load->view('data/export/exportpasien', $data);
       }
 

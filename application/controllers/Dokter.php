@@ -6,7 +6,7 @@ class Dokter extends CI_Controller {
     {
         parent::__construct();
         $this->load->database();
-        $this->load->model('model_Dokter');
+        $this->load->model('Model_Dokter');
     }
 
     public function renderLayout($data)
@@ -20,7 +20,7 @@ class Dokter extends CI_Controller {
   {
    $data ['title'] = "List Dokter";
    $data ['page'] = "Dokter";
-   $data ['list'] = $this->model_Dokter->getAll();
+   $data ['list'] = $this->Model_Dokter->getAll();
 
    $this->renderLayout($data);
    // $this->load->view('data/modal', $data);
@@ -28,7 +28,7 @@ class Dokter extends CI_Controller {
 
 public function hapus_data($id)
 {
-   $cekhapus = $this->model_Dokter->hapus($id);
+   $cekhapus = $this->Model_Dokter->hapus($id);
    if ($cekhapus == TRUE) {
       redirect('Dokter/index','refresh');
   }else{
@@ -47,7 +47,7 @@ public function form_edit($id)
 {
    $data['title'] = "Form Edit Data";
    $data['page'] = "FormEditDokter";
-   $data['dokter'] = $this->model_Dokter->get_dokter($id);
+   $data['dokter'] = $this->Model_Dokter->get_dokter($id);
 
    $this->renderLayout($data);
 }
@@ -65,7 +65,7 @@ public function tambah_data()
 
    $datasimpan = array('id_dokter'=>$id, 'kd_dokter'=>$kd_dktr, 'nm_dokter'=>$nm_dktr, 'jk'=>$jk, 'tmp_lahir'=>$tmpt_lhr, 'tgl_lahir'=>$tgl_lhr, 'gol_drh'=>$goldar, 'agama'=>$agm);
 
-   $ceksimpan = $this->model_Dokter->insert($datasimpan);
+   $ceksimpan = $this->Model_Dokter->insert($datasimpan);
    if ($ceksimpan == TRUE) {
       redirect('Dokter/index','refresh');
   }else {
@@ -86,7 +86,7 @@ public function edit_data() {
 
     $dataupdate = array('id_dokter'=>$id, 'kd_dokter'=>$kd_dktr, 'nm_dokter'=>$nm_dktr, 'jk'=>$jk, 'tmp_lahir'=>$tmpt_lhr, 'tgl_lahir'=>$tgl_lhr, 'gol_drh'=>$goldar, 'agama'=>$agm);
 
-    $cekupdate = $this->model_Dokter->edit($dataupdate);
+    $cekupdate = $this->Model_Dokter->edit($dataupdate);
     if ($cekupdate == TRUE) {
       redirect('Dokter/index','refresh');
   }else {
@@ -127,7 +127,7 @@ public function export(){
     header("Content-type: application/vnd-ms-excel");
     header("Content-Disposition: attachment; filename=Modul_Lab_Dokter.xls");
     
-    $data['list'] = $this->model_Dokter->getAll();
+    $data['list'] = $this->Model_Dokter->getAll();
     $this->load->view('data/export/exportdokter', $data);
 }
 
